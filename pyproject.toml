@@ -1,7 +1,3 @@
-[build-system]
-requires = ["setuptools>=42", "wdbo_criterion", "gpytorch", "torch", "botorch"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "wdbo_algo"
 version = "1.0.0"
@@ -15,6 +11,12 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: BSD License",
     "Operating System :: OS Independent",
+]
+dependencies = [
+    "wdbo_criterion",
+    "gpytorch",
+    "torch",
+    "botorch"
 ]
 
 [project.urls]
