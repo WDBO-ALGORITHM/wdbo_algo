@@ -19,4 +19,3 @@ W_DBO_criterion = "https://github.com/WDBO-ALGORITHM/wdbo_criterion"
 
 [build-system]
 requires = ["hatchling", "wdbo_criterion", "gpytorch", "torch", "botorch"]
-build-backend = "hatchling.build"
