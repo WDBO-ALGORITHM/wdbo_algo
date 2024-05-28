@@ -13,9 +13,10 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
+[build-system]
+requires = ["setuptools>=42", "wdbo_criterion", "gpytorch", "torch", "botorch"]
+build-backend = "setuptools.build_meta"
+
 [project.urls]
 Homepage = "https://github.com/WDBO-ALGORITHM/wdbo_algo"
 W_DBO_criterion = "https://github.com/WDBO-ALGORITHM/wdbo_criterion"
-
-[build-system]
-requires = ["hatchling", "wdbo_criterion", "gpytorch", "torch", "botorch"]
