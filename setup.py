@@ -15,7 +15,4 @@ setup(
     ],
     python_requires='>=3.7',
     url='https://github.com/WDBO-ALGORITHM/wdbo_algo'
-    project_urls={
-        'W_DBO_criterion': 'https://github.com/WDBO-ALGORITHM/wdbo_criterion'
-    }
 )
