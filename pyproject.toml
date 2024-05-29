@@ -1,3 +1,26 @@
 [build-system]
-requires = ["setuptools", "wheel", "cibuildwheel"]
+requires = ["setuptools>=58"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "wdbo_algo"
+version = "1.0.6"
+authors = [
+  { name="Anthony Bardou", email="anthony.bardou@epfl.ch" },
+]
+description = "W-DBO Algotithm for Dynamic Bayesian Optimization"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+  "wdbo_criterion",
+    "gpytorch",
+    "torch",
+    "botorch"
+]
+
+[project.urls]
+Homepage = "https://github.com/pypa/sampleproject"
+Issues = "https://github.com/pypa/sampleproject/issues"

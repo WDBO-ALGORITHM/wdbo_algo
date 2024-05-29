@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: wdbo_algo
+Version: 1.0.6
+Summary: W-DBO Algotithm for Dynamic Bayesian Optimization
+Author-email: Anthony Bardou <anthony.bardou@epfl.ch>
+Project-URL: Homepage, https://github.com/pypa/sampleproject
+Project-URL: Issues, https://github.com/pypa/sampleproject/issues
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENCE
+Requires-Dist: wdbo_criterion
+Requires-Dist: gpytorch
+Requires-Dist: torch
+Requires-Dist: botorch
+
+# W-DBO for Dynamic Bayesian Optimization

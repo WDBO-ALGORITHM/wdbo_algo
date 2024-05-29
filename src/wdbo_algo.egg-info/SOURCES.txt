@@ -1,0 +1,11 @@
+LICENCE
+README.md
+pyproject.toml
+src/wdbo_algo/__init__.py
+src/wdbo_algo/model.py
+src/wdbo_algo/optimizer.py
+src/wdbo_algo.egg-info/PKG-INFO
+src/wdbo_algo.egg-info/SOURCES.txt
+src/wdbo_algo.egg-info/dependency_links.txt
+src/wdbo_algo.egg-info/requires.txt
+src/wdbo_algo.egg-info/top_level.txt
