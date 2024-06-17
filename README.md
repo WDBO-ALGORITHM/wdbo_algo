@@ -4,7 +4,7 @@
 
 ## TL;DR
 
-W-DBO is a Dynamic Bayesian Optimization (DBO) algorithm. It is an ideal optimizer for a dynamic black-box function.
+W-DBO is a Dynamic Bayesian Optimization (DBO) algorithm. It is a well-suited optimizer for a dynamic black-box function.
 
 In fact, W-DBO is the first DBO algorithm able to simultaneously (i) capture complex spatio-temporal dynamics and (ii) remove stale and/or irrelevant observations from its dataset. As a consequence, it thrives in any DBO task, even those with infinite time horizons, providing at the same time good performance and a high sampling frequency.
 
