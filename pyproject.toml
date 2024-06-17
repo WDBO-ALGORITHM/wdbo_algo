@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wdbo_algo"
-version = "1.0.6"
+version = "1.0.7"
 authors = [
   { name="Anthony Bardou", email="anthony.bardou@epfl.ch" },
 ]
@@ -22,5 +22,4 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/pypa/sampleproject"
-Issues = "https://github.com/pypa/sampleproject/issues"
+Project = "https://github.com/WDBO-ALGORITHM"
