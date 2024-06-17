@@ -8,19 +8,20 @@ W-DBO is a Dynamic Bayesian Optimization (DBO) algorithm. It is a well-suited op
 
 In fact, W-DBO is the first DBO algorithm able to simultaneously (i) capture complex spatio-temporal dynamics and (ii) remove stale and/or irrelevant observations from its dataset. As a consequence, it thrives in any DBO task, even those with infinite time horizons, providing at the same time good performance and a high sampling frequency.
 
-W-DBO is authored by [Anthony Bardou](https://abardou.github.io/), [Patrick Thiran](https://people.epfl.ch/patrick.thiran) and [Giovanni Ranieri](https://github.com/flxinxout). The code in this repository is based on BoTorch [1] and Eigen [2].
+W-DBO is authored by [Anthony Bardou](https://abardou.github.io/), [Patrick Thiran](https://people.epfl.ch/patrick.thiran) and [Giovanni Ranieri](https://flxinxout.github.io). The code in this repository is based on BoTorch [1] and Eigen [2].
 
 ## Contents
 
-* [Citing this Work](#citing-this-work)
-* [Installation](#installation)
-* [Quick Start](#quick-start)
-* [Troubleshooting](#troubleshooting)
-* [References](#references)
+- [Citing this Work](#citing-this-work)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Troubleshooting](#troubleshooting)
+- [References](#references)
 
 ## Citing this Work
 
 If you use this code or if you'd like to reference this work, please cite [the following paper](https://arxiv.org/abs/2405.14540) [3] with the following BibTeX entry:
+
 ```bibtex
 @article{bardou2024too,
   title={This Too Shall Pass: Removing Stale Observations in Dynamic Bayesian Optimization},
@@ -33,6 +34,7 @@ If you use this code or if you'd like to reference this work, please cite [the f
 ## Installation
 
 W-DBO has its own [PyPI package](https://pypi.org/project/wdbo-algo/). To install it, open your favorite command line and run
+
 ```
 pip install wdbo-algo
 ```
@@ -41,9 +43,10 @@ Alternatively, you can download the code from this repository.
 
 ## Quick Start
 
-In this section, we provide all the relevant details to use W-DBO and a minimal working example. 
+In this section, we provide all the relevant details to use W-DBO and a minimal working example.
 
 W-DBO can be used by instantiating the `wdbo_algo.optimizer.WDBOOptimizer` class as follows:
+
 ```python
 from wdbo_algo.optimizer import WDBOOptimizer
 import gpytorch
@@ -60,18 +63,19 @@ wdbo_optimizer = WDBOOptimizer(
 
 We describe the arguments in more details below. Let $f : \mathcal{S} \times \mathcal{T} \to \mathbb{R}$, where $\mathcal{S} \subseteq \mathbb{R}^d$ is the $d$-dimensional space domain and $\mathcal{T} \subseteq \mathbb{R}$ is the time domain. Then,
 
-* `spatial_domain` describes the space domain $\mathcal{S}$. More precisely, it is an array of shape $(d, 2)$ describing a $d$-dimensional hyperrectangle. The infimum and supremum for the $i$th dimension are in `spatial_domain[i-1, 0]` and `spatial_domain[i-1, 1]`, respectively.
-* `spatial_kernel` is a class from `gpytorch.kernels` describing the correlation of function values in the spatial domain. Right now, only the two most popular kernels are supported, namely `gpytorch.kernels.RBFKernel` (the squared-exponential covariance function) and `gpytorch.kernels.MaternKernel` (the Matérn covariance function).
-* `temporal_kernel` is a class from `gpytorch.kernels` describing the correlation of function values in the temporal domain. Right now, only the two most popular kernels are supported, namely `gpytorch.kernels.RBFKernel` (the squared-exponential covariance function) and `gpytorch.kernels.MaternKernel` (the Matérn covariance function).
-* `spatial_kernel_args` can be used to pass arguments to the constructor of the `gpytorch.kernels` class. It is ignored for `spatial_kernel=gpytorch.kernels.RBFKernel`, but must contain the `nu` parameter (half-integer only) for `spatial_kernel=gpytorch.kernels.MaternKernel`.
-* `temporal_kernel_args` can be used to pass arguments to the constructor of the `gpytorch.kernels` class. It is ignored for `temporal_kernel=gpytorch.kernels.RBFKernel`, but must contain the `nu` parameter (half-integer only) for `temporal_kernel=gpytorch.kernels.MaternKernel`.
-* `n_initial_observations` is the number of observations to collect before beginning the removal of irrelevant observations. This number must be large enough so that the hyperparameters of the covariance functions can be decently approximated by MLE.
-* `alpha` is the hyperparameter controlling the removal of irrelevant observations. The larger $\alpha$, the more observations are removed. The recommended value in [3] is `alpha=0.25`.
+- `spatial_domain` describes the space domain $\mathcal{S}$. More precisely, it is an array of shape $(d, 2)$ describing a $d$-dimensional hyperrectangle. The infimum and supremum for the $i$th dimension are in `spatial_domain[i-1, 0]` and `spatial_domain[i-1, 1]`, respectively.
+- `spatial_kernel` is a class from `gpytorch.kernels` describing the correlation of function values in the spatial domain. Right now, only the two most popular kernels are supported, namely `gpytorch.kernels.RBFKernel` (the squared-exponential covariance function) and `gpytorch.kernels.MaternKernel` (the Matérn covariance function).
+- `temporal_kernel` is a class from `gpytorch.kernels` describing the correlation of function values in the temporal domain. Right now, only the two most popular kernels are supported, namely `gpytorch.kernels.RBFKernel` (the squared-exponential covariance function) and `gpytorch.kernels.MaternKernel` (the Matérn covariance function).
+- `spatial_kernel_args` can be used to pass arguments to the constructor of the `gpytorch.kernels` class. It is ignored for `spatial_kernel=gpytorch.kernels.RBFKernel`, but must contain the `nu` parameter (half-integer only) for `spatial_kernel=gpytorch.kernels.MaternKernel`.
+- `temporal_kernel_args` can be used to pass arguments to the constructor of the `gpytorch.kernels` class. It is ignored for `temporal_kernel=gpytorch.kernels.RBFKernel`, but must contain the `nu` parameter (half-integer only) for `temporal_kernel=gpytorch.kernels.MaternKernel`.
+- `n_initial_observations` is the number of observations to collect before beginning the removal of irrelevant observations. This number must be large enough so that the hyperparameters of the covariance functions can be decently approximated by MLE.
+- `alpha` is the hyperparameter controlling the removal of irrelevant observations. The larger $\alpha$, the more observations are removed. The recommended value in [3] is `alpha=0.25`.
 
 The `wdbo_algo.optimizer.WDBOOptimizer` class has three important methods:
-* `next_query(t)` searches for an input to query at time `t` by finding an exploration-exploitation trade-off about the objective function,
-* `tell(x, t, y)` adds a new observation $((\bm x, t), y)$ to the dataset, where $\bm x \in \mathcal{S}$, $t \in \mathcal{T}$, $y = f(\bm x, t) + \epsilon$ and $\epsilon \sim \mathcal{N}(0, \sigma^2)$
-* `clean(t)` removes irrelevant observations from the dataset
+
+- `next_query(t)` searches for an input to query at time `t` by finding an exploration-exploitation trade-off about the objective function,
+- `tell(x, t, y)` adds a new observation $((\bm x, t), y)$ to the dataset, where $\bm x \in \mathcal{S}$, $t \in \mathcal{T}$, $y = f(\bm x, t) + \epsilon$ and $\epsilon \sim \mathcal{N}(0, \sigma^2)$
+- `clean(t)` removes irrelevant observations from the dataset
 
 Putting it all together, here is a minimal working example:
 
@@ -89,7 +93,7 @@ def my_noisy_objective_function(x, t):
 	f = 0.0
 	for i in range(2):
 		f += 100 * ((x[i + 1] - x[i] ** 2) ** 2) + (1 - x[i]) ** 2
-		
+
 	return -f + np.random.normal(0.0, np.sqrt(0.1))
 
 if __name__ == "__main__":
